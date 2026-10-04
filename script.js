@@ -1,4 +1,3 @@
-alert("BlueChat JS is working!");
 const sendBtn = document.getElementById("sendBtn");
 const messageInput = document.getElementById("messageInput");
 const chat = document.getElementById("chat");
@@ -7,10 +6,9 @@ const chat = document.getElementById("chat");
 const webhookURL = "https://abdou01.app.n8n.cloud/webhook/bluechat";
 
 
-/* =========================
-   ارتفاع الشاشة الحقيقي
-   يتعامل مع لوحة مفاتيح الهاتف
-========================= */
+// =========================
+// ارتفاع الشاشة مع لوحة المفاتيح
+// =========================
 
 function updateViewportHeight() {
 
@@ -33,16 +31,10 @@ function updateViewportHeight() {
 
 updateViewportHeight();
 
-
 if (window.visualViewport) {
 
     window.visualViewport.addEventListener(
         "resize",
-        updateViewportHeight
-    );
-
-    window.visualViewport.addEventListener(
-        "scroll",
         updateViewportHeight
     );
 
@@ -54,41 +46,22 @@ window.addEventListener(
 );
 
 
-/* =========================
-   تمرير المحادثة للأسفل
-========================= */
-
-function scrollChatToBottom() {
-
-    requestAnimationFrame(() => {
-
-        chat.scrollTop = chat.scrollHeight;
-
-    });
-
-}
-
-
-/* =========================
-   تكبير خانة الكتابة
-========================= */
+// =========================
+// تكبير خانة الكتابة
+// =========================
 
 function resizeMessageInput() {
 
     messageInput.style.height = "auto";
 
-    const newHeight = Math.min(
-        messageInput.scrollHeight,
-        140
-    );
-
-    messageInput.style.height = newHeight + "px";
+    messageInput.style.height =
+        Math.min(messageInput.scrollHeight, 140) + "px";
 }
 
 
-/* =========================
-   إرسال الرسالة
-========================= */
+// =========================
+// إرسال الرسالة
+// =========================
 
 async function sendMessage() {
 
@@ -97,10 +70,7 @@ async function sendMessage() {
     if (text === "") return;
 
 
-    /* =========================
-       عرض رسالة المستخدم
-    ========================= */
-
+    // عرض رسالة المستخدم
     const userMsg = document.createElement("div");
 
     userMsg.className = "user-message";
@@ -110,21 +80,19 @@ async function sendMessage() {
     chat.appendChild(userMsg);
 
 
-    /* =========================
-       تنظيف خانة الكتابة
-    ========================= */
-
+    // تفريغ خانة الكتابة
     messageInput.value = "";
 
     messageInput.style.height = "48px";
 
 
-    scrollChatToBottom();
+    // النزول إلى آخر رسالة
+    chat.scrollTop = chat.scrollHeight;
 
 
-    /* =========================
-       إرسال الرسالة إلى n8n
-    ========================= */
+    // =========================
+    // إرسال الرسالة إلى n8n
+    // =========================
 
     try {
 
@@ -141,13 +109,10 @@ async function sendMessage() {
 
         const data = await response.json();
 
-console.log("رد n8n:", data);
-alert(JSON.stringify(data));
+        console.log("رد n8n:", data);
 
-        /* =========================
-           عرض رد BlueChat
-        ========================= */
 
+        // عرض رد البوت
         const botMsg = document.createElement("div");
 
         botMsg.className = "bot-message";
@@ -156,8 +121,7 @@ alert(JSON.stringify(data));
 
         chat.appendChild(botMsg);
 
-
-        scrollChatToBottom();
+        chat.scrollTop = chat.scrollHeight;
 
 
     } catch (error) {
@@ -169,9 +133,9 @@ alert(JSON.stringify(data));
 }
 
 
-/* =========================
-   زر الإرسال
-========================= */
+// =========================
+// زر الإرسال
+// =========================
 
 sendBtn.addEventListener(
     "click",
@@ -179,9 +143,9 @@ sendBtn.addEventListener(
 );
 
 
-/* =========================
-   الكتابة داخل textarea
-========================= */
+// =========================
+// الكتابة
+// =========================
 
 messageInput.addEventListener(
     "input",
@@ -189,9 +153,10 @@ messageInput.addEventListener(
 );
 
 
-/* =========================
-   Enter / Shift + Enter
-========================= */
+// =========================
+// Enter = إرسال
+// Shift + Enter = سطر جديد
+// =========================
 
 messageInput.addEventListener(
     "keydown",
@@ -204,26 +169,6 @@ messageInput.addEventListener(
             sendMessage();
 
         }
-
-    }
-);
-
-
-/* =========================
-   عند فتح لوحة المفاتيح
-========================= */
-
-messageInput.addEventListener(
-    "focus",
-    function() {
-
-        setTimeout(() => {
-
-            updateViewportHeight();
-
-            scrollChatToBottom();
-
-        }, 250);
 
     }
 );
