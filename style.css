@@ -1,0 +1,152 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI,sans-serif;
+}
+
+body{
+  background:#07131f;
+  height:100vh;
+  overflow:hidden;
+}
+
+.app{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:linear-gradient(
+      180deg,
+      #0a1828 0%,
+      #0d2236 100%
+  );
+}
+
+header{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 15px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(20px);
+}
+
+.logo-area{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-area img{
+  width:38px;
+  height:38px;
+  object-fit:contain;
+}
+
+.logo-area h1{
+  color:white;
+  font-size:20px;
+  font-weight:600;
+}
+
+.menu-btn,
+.settings-btn{
+  background:none;
+  border:none;
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
+
+#chat{
+  flex:1;
+  overflow-y:auto;
+  padding:20px;
+}
+
+.bot-message,
+.user-message{
+  max-width:85%;
+  margin-bottom:15px;
+  padding:14px 16px;
+  border-radius:18px;
+  color:white;
+  line-height:1.5;
+}
+
+.bot-message{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(10px);
+}
+
+.user-message{
+  margin-left:auto;
+  background:#229ED9;
+}
+
+footer{
+  padding:15px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+footer{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.attach-btn{
+  color:white;
+  font-size:24px;
+  cursor:pointer;
+}
+
+#messageInput{
+  flex:1;
+  height:52px;
+  border:none;
+  outline:none;
+  border-radius:26px;
+  padding:0 18px;
+  background:rgba(255,255,255,.08);
+  color:white;
+  font-size:16px;
+}
+
+#messageInput::placeholder{
+  color:#9bb7cc;
+}
+
+#sendBtn{
+  width:52px;
+  height:52px;
+  border:none;
+  border-radius:50%;
+  background:#229ED9;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-280px;
+  width:280px;
+  height:100%;
+  background:#08111d;
+  transition:.3s;
+  z-index:999;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+
+.sidebar.active{
+  left:0;
+}
+.logo-area img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    display: block;
+}
