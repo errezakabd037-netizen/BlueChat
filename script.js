@@ -1,3 +1,4 @@
+alert("BlueChat JS is working!");
 const sendBtn = document.getElementById("sendBtn");
 const messageInput = document.getElementById("messageInput");
 const chat = document.getElementById("chat");
@@ -140,8 +141,8 @@ async function sendMessage() {
 
         const data = await response.json();
 
-        console.log("رد n8n:", data);
-
+console.log("رد n8n:", data);
+alert(JSON.stringify(data));
 
         /* =========================
            عرض رد BlueChat
