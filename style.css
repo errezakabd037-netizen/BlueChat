@@ -13,12 +13,15 @@ html,
 body {
     width: 100%;
     height: 100%;
+
     overflow: hidden;
+
     background: #07131f;
 }
 
 body {
-    min-height: 100dvh;
+    position: fixed;
+    inset: 0;
 }
 
 /* =========================
@@ -26,9 +29,14 @@ body {
 ========================= */
 
 .app {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
     width: 100%;
-    height: 100dvh;
-    min-height: 0;
+
+    height: var(--app-height, 100dvh);
 
     display: flex;
     flex-direction: column;
@@ -84,6 +92,7 @@ header {
 
 .logo-area h1 {
     color: white;
+
     font-size: 20px;
     font-weight: 600;
 
@@ -96,6 +105,7 @@ header {
     border: none;
 
     color: white;
+
     font-size: 24px;
 
     cursor: pointer;
@@ -126,6 +136,7 @@ header {
     padding: 20px;
 
     -webkit-overflow-scrolling: touch;
+
     overscroll-behavior: contain;
 
     scroll-behavior: smooth;
@@ -151,6 +162,8 @@ header {
 
     overflow-wrap: anywhere;
     word-break: break-word;
+
+    white-space: pre-wrap;
 }
 
 .bot-message {
@@ -178,23 +191,19 @@ footer {
     flex-shrink: 0;
 
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 
     gap: 10px;
 
     padding: 12px 15px;
 
-    /*
-       يحترم المساحة الآمنة في أجهزة
-       iPhone وغيرها من الأجهزة الحديثة
-    */
     padding-bottom: calc(
         12px + env(safe-area-inset-bottom, 0px)
     );
 
     border-top: 1px solid rgba(255,255,255,.08);
 
-    background: rgba(7,19,31,.95);
+    background: rgba(7,19,31,.97);
 
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -218,7 +227,7 @@ footer {
     flex-shrink: 0;
 
     width: 42px;
-    height: 42px;
+    height: 48px;
 
     display: flex;
     align-items: center;
@@ -234,14 +243,17 @@ footer {
 
     min-width: 0;
 
-    height: 52px;
+    width: 100%;
+
+    min-height: 48px;
+    max-height: 140px;
 
     border: none;
     outline: none;
 
-    border-radius: 26px;
+    border-radius: 24px;
 
-    padding: 0 18px;
+    padding: 13px 18px;
 
     background: rgba(255,255,255,.08);
 
@@ -249,7 +261,15 @@ footer {
 
     font-size: 16px;
 
+    line-height: 22px;
+
+    resize: none;
+
+    overflow-y: auto;
+
     -webkit-appearance: none;
+
+    display: block;
 }
 
 #messageInput::placeholder {
@@ -267,6 +287,7 @@ footer {
     min-width: 52px;
 
     border: none;
+
     border-radius: 50%;
 
     background: #229ED9;
@@ -367,17 +388,18 @@ footer {
 
     .attach-btn {
         width: 38px;
-        height: 38px;
+        height: 48px;
 
         font-size: 22px;
     }
 
     #messageInput {
-        height: 48px;
+        min-height: 48px;
+        max-height: 140px;
 
         border-radius: 24px;
 
-        padding: 0 15px;
+        padding: 13px 15px;
 
         font-size: 16px;
     }
@@ -425,15 +447,15 @@ footer {
 
     .attach-btn {
         width: 34px;
-        height: 34px;
+        height: 46px;
 
         font-size: 20px;
     }
 
     #messageInput {
-        height: 46px;
+        min-height: 46px;
 
-        padding: 0 13px;
+        padding: 12px 13px;
 
         font-size: 15px;
     }
@@ -443,17 +465,6 @@ footer {
         height: 46px;
 
         min-width: 46px;
-    }
-}
-
-/* ==================================================
-   📱 الشاشات الطويلة / الحديثة
-================================================== */
-
-@media (min-height: 800px) and (max-width: 600px) {
-
-    #chat {
-        padding-bottom: 20px;
     }
 }
 
