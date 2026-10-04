@@ -81,9 +81,8 @@ header {
 }
 
 .logo-area img {
-    width: 42px;
-    height: 42px;
-
+    width: 52px;
+    height: 52px;
     object-fit: contain;
     display: block;
 
@@ -351,9 +350,10 @@ footer {
     }
 
     .logo-area img {
-        width: 38px;
-        height: 38px;
-    }
+    width: 48px;
+    height: 48px;
+}
+    
 
     .logo-area h1 {
         font-size: 18px;
@@ -483,4 +483,8 @@ footer {
         padding-left: max(15px, 5vw);
         padding-right: max(15px, 5vw);
     }
+}
+.logo-area img {
+    width: 55px !important;
+    height: 55px !important;
 }
